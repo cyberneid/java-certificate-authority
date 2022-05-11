@@ -110,15 +110,27 @@ public final class CA {
   }
 
   /**
-   * Loads a {@link CSR} (Certificate Signing Request) from a file.
+   * Loads a {@link CSR} (Certificate Signing Request) from a CRS PEM.
    *
-   * @param csrFileName
-   *          CSR file path
-   * @return the CSR object
+   * @param pemCSR
+   *          CSR PEM
+   * @return the CSR PEM
    */
-  public static CsrLoader loadCsr(final String csrFileName) {
-    return new CsrLoaderImpl(csrFileName);
+  public static CsrLoader loadCsr(final String pemCSR) {
+    return new CsrLoaderImpl(pemCSR);
   }
+
+  
+//  /**
+//   * Loads a {@link CSR} (Certificate Signing Request) from a file.
+//   *
+//   * @param csrFileName
+//   *          CSR file path
+//   * @return the CSR object
+//   */
+//  public static CsrLoader loadCsr(final String csrFileName) {
+//    return new CsrLoaderImpl(csrFileName);
+//  }
 
   /**
    * Creates a builder object used to build a {@link DistinguishedName}.

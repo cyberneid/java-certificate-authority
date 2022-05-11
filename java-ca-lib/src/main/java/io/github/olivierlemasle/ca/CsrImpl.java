@@ -1,5 +1,6 @@
 package io.github.olivierlemasle.ca;
 
+import java.io.IOException;
 import java.security.PublicKey;
 
 import org.bouncycastle.openssl.PEMException;
@@ -9,9 +10,12 @@ import org.bouncycastle.pkcs.PKCS10CertificationRequest;
 class CsrImpl implements CSR {
   private final DistinguishedName dn;
   private final PublicKey publicKey;
-
+  private PKCS10CertificationRequest request;
+  
   public CsrImpl(final PKCS10CertificationRequest request) {
-    dn = new BcX500NameDnImpl(request.getSubject());
+    this.request = request;
+    
+	dn = new BcX500NameDnImpl(request.getSubject());
     try {
       publicKey = new JcaPEMKeyConverter().getPublicKey(request.getSubjectPublicKeyInfo());
     } catch (final PEMException e) {
@@ -29,4 +33,8 @@ class CsrImpl implements CSR {
     return publicKey;
   }
 
+  @Override
+  public byte[] getEncoded() throws IOException {
+    return request.getEncoded();
+  }
 }

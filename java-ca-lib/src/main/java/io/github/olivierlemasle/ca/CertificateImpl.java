@@ -25,7 +25,7 @@ class CertificateImpl implements Certificate {
   }
 
   @Override
-  public String print() {
+  public String save() {
     final StringWriter sw = new StringWriter();
     try {
       try (JcaPEMWriter writer = new JcaPEMWriter(sw)) {
@@ -53,6 +53,7 @@ class CertificateImpl implements Certificate {
     }
   }
 
+  
   @Override
   public void save(final String fileName) {
     final File file = new File(fileName);

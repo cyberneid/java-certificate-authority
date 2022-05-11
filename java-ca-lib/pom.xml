@@ -4,10 +4,11 @@
   <parent>
     <groupId>io.github.olivierlemasle</groupId>
     <artifactId>java-certificate-authority</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.2-SNAPSHOT</version>
   </parent>
   <artifactId>java-ca-lib</artifactId>
   <name>${project.groupId}:${project.artifactId}</name>
+  <version>0.0.4-SNAPSHOT</version>
   <description>A Java Certificate Authority library</description>
 
   <dependencies>

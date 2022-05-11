@@ -8,8 +8,8 @@ public interface Certificate {
 
   public X509Certificate getX509Certificate();
 
-  public String print();
-
+  public String save();
+  
   public void save(File file);
 
   public void save(String fileName);

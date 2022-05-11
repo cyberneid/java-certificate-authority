@@ -1,6 +1,7 @@
 package io.github.olivierlemasle.ca;
 
 import java.security.KeyPair;
+import java.security.PrivateKey;
 import java.security.cert.X509Certificate;
 import java.time.ZonedDateTime;
 
@@ -12,7 +13,7 @@ import io.github.olivierlemasle.ca.ext.CrlDistPointExtension;
 import io.github.olivierlemasle.ca.ext.KeyUsageExtension;
 import io.github.olivierlemasle.ca.ext.KeyUsageExtension.KeyUsage;
 
-class RootCertificateBuilderImpl implements RootCertificateBuilder {
+public class RootCertificateBuilderImpl implements RootCertificateBuilder {
 
   private String crlUri = null;
 
@@ -67,4 +68,8 @@ class RootCertificateBuilderImpl implements RootCertificateBuilder {
     return new RootCertificateImpl(rootCertificate, pair.getPrivate());
   }
 
+  public static RootCertificate build(X509Certificate certificate, PrivateKey privateKey)
+  {
+	  return new RootCertificateImpl(certificate, privateKey);
+  }
 }
