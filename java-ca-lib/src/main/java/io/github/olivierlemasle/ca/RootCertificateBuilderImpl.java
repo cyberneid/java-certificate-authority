@@ -3,6 +3,7 @@ package io.github.olivierlemasle.ca;
 import java.security.KeyPair;
 import java.security.PrivateKey;
 import java.security.cert.X509Certificate;
+import java.security.Provider;
 import java.time.ZonedDateTime;
 
 import org.bouncycastle.asn1.x509.BasicConstraints;
@@ -19,11 +20,17 @@ public class RootCertificateBuilderImpl implements RootCertificateBuilder {
 
   private final KeyPair pair;
   private final SignerWithSerial signer;
-
+  
   RootCertificateBuilderImpl(final DistinguishedName subject) {
     pair = KeysUtil.generateKeyPair();
     signer = new SignerImpl(pair, subject, pair.getPublic(), subject)
         .setRandomSerialNumber();
+  }
+  
+  RootCertificateBuilderImpl(final DistinguishedName subject, int keySize, Provider provider) {
+	pair = KeysUtil.generateKeyPair(keySize, provider);
+	signer = new SignerImpl(pair, subject, pair.getPublic(), subject)
+	        .setRandomSerialNumber();
   }
 
   @Override
@@ -64,7 +71,7 @@ public class RootCertificateBuilderImpl implements RootCertificateBuilder {
     signer.addExtension(Extension.basicConstraints, false, new BasicConstraints(true));
 
     final X509Certificate rootCertificate = signer.sign().getX509Certificate();
-
+    
     return new RootCertificateImpl(rootCertificate, pair.getPrivate());
   }
 

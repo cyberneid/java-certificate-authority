@@ -81,7 +81,7 @@
       <dependency>
         <groupId>${project.groupId}</groupId>
         <artifactId>java-ca-lib</artifactId>
-        <version>${project.version}</version>
+        <version>0.0.4-SNAPSHOT</version>
       </dependency>
       <dependency>
         <groupId>org.bouncycastle</groupId>

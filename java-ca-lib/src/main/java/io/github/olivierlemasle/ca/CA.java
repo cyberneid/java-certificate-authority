@@ -3,6 +3,7 @@ package io.github.olivierlemasle.ca;
 import java.io.File;
 import java.math.BigInteger;
 import java.security.KeyStore;
+import java.security.Provider;
 
 import javax.security.auth.x500.X500Principal;
 
@@ -38,6 +39,18 @@ public final class CA {
     return new RootCertificateBuilderImpl(subject);
   }
 
+  /**
+   * Creates a builder object used to create a new self-signed root certificate by using PKCS#11 HSM.
+   *
+   * @param subject
+   *          Subject's Distinguished Name
+   * @return a builder object
+   */
+  public static RootCertificateBuilder createSelfSignedCertificate(
+	      final DistinguishedName subject, int keySize, Provider p) {
+	    return new RootCertificateBuilderImpl(subject, keySize, p);
+	  }
+  
   /**
    * Loads an existing {@link RootCertificate} from a {@code PKCS12} keystore.
    *
