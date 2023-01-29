@@ -2,6 +2,7 @@ package io.github.olivierlemasle.ca;
 
 import java.security.KeyPair;
 import java.security.PrivateKey;
+import java.security.Provider;
 import java.security.PublicKey;
 
 import org.bouncycastle.asn1.x500.X500Name;
@@ -16,8 +17,8 @@ class CsrBuilderImpl implements CsrBuilder {
   private static final String SIGNATURE_ALGORITHM = "SHA256withRSA";
 
   @Override
-  public CsrWithPrivateKey generateRequest(final DistinguishedName dn) {
-    final KeyPair pair = KeysUtil.generateKeyPair();
+  public CsrWithPrivateKey generateRequest(final DistinguishedName dn, Provider p) {
+    final KeyPair pair = KeysUtil.generateKeyPair(p);
     try {
       final PrivateKey privateKey = pair.getPrivate();
       final PublicKey publicKey = pair.getPublic();

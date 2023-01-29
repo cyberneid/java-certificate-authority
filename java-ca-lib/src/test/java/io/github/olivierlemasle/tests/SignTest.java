@@ -22,7 +22,7 @@ public class SignTest {
   public void sign() {
     final DistinguishedName caName = dn("CN=CA-Test");
     final RootCertificate ca = createSelfSignedCertificate(caName).build();
-    final CSR csr = createCsr().generateRequest(dn("CN=test"));
+    final CSR csr = createCsr().generateRequest(dn("CN=test"), null);
     final X509Certificate cert = ca.signCsr(csr)
         .setRandomSerialNumber()
         .sign()

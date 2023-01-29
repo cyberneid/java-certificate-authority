@@ -35,7 +35,7 @@ public class KeystoreExportTest {
   public static void setup() {
     final DistinguishedName caName = dn("CN=CA-Test");
     ca = createSelfSignedCertificate(caName).build();
-    csr = createCsr().generateRequest(dn("CN=Test"));
+    csr = createCsr().generateRequest(dn("CN=Test"), null);
     serialNumber = generateRandomSerialNumber();
     cert = ca.signCsr(csr)
         .setSerialNumber(serialNumber)

@@ -22,19 +22,12 @@ final class KeysUtil {
   }
 
   static KeyPair generateKeyPair() {
-    return generateKeyPair(DEFAULT_KEY_SIZE);
+	    return generateKeyPair(DEFAULT_KEY_SIZE, null);
+	  }
+  static KeyPair generateKeyPair(Provider p) {
+    return generateKeyPair(DEFAULT_KEY_SIZE, p);
   }
 
-  static KeyPair generateKeyPair(final int keySize) {
-    try {
-      final KeyPairGenerator gen = KeyPairGenerator.getInstance(ALGORITHM);
-      gen.initialize(keySize);
-      return gen.generateKeyPair();
-    } catch (final NoSuchAlgorithmException | InvalidParameterException e) {
-      throw new CaException(e);
-    }
-  }
-  
   static KeyPair generateKeyPair(final int keySize, Provider provider) {
 	    try {
 	    		        
